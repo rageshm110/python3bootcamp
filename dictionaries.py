@@ -7,9 +7,9 @@
 
 # Synatx
 # Dictionaries use curly braces and colons to signify the
-# keys and their associated alues.
+# keys and their associated alues.s
 
-# {'key1':'value1', 'key2':'value2'}
+# {'key1':'value1', 'key2':'value2'}s
 
 # Dictionaries vs list
 
@@ -26,5 +26,9 @@ os.system('clear')
 
 price_lookup = {'apple':2.99, 'orange':1.49, 'milk':5.99}
 print("Price of apple: ${}".format(price_lookup['apple']))
+
+
+extra_dict = {'k1':123, 'k2':[1, 2, 3],'k3':{'insideKey':1000}}
+print("extracting data from the nested dictionary structure and the vlaue is: {}".format(extra_dict['k3']['insideKey']))
 
 
