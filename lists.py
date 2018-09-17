@@ -1,6 +1,6 @@
 
 
-# LIsts are ordered sequences that can hold a variety of object types
+# Lists are ordered sequences that can hold a variety of object types
 # they use [] and , to separate objects in list
 # ex: [1,2,3,4] | ["Ragesh","TechM", 4] | ["Adhik", [2007, 20, 05]]
 

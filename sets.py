@@ -3,7 +3,7 @@ import os
 
 os.system('clear')
 #### Sets ####
-# Sets are unrdered collection of unique objects
+# Sets are unordered collection of unique objects
 
 # Syntaxd
 # myset = set()
