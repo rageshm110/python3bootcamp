@@ -1,6 +1,6 @@
 import os
 
-os.system("clear")
+os.system("cls")
 
 my_string = "Winner! Winner! Chicken dinner!"
 vowel_count = 0
