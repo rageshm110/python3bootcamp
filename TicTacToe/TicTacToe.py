@@ -38,14 +38,14 @@ def select_marker(marker):
 # Function to check the win condition
 def check_victory(board):
 
-    if ((board[0] == board[1] == board[2])\
-    or (board[0] == board[3] == board[6])\
-    or (board[0] == board[4] == board[8])\
-    or (board[3] == board[4] == board[5])\
-    or (board[1] == board[4] == board[7])\
-    or (board[2] == board[5] == board[8])\
-    or (board[6] == board[7] == board[8])\
-    or (board[2] == board[4] == board[6])):
+    if ((board[0] == board[1] == board[2] == 'X') or (board[0] == board[1] == board[2] == '0')\
+    or (board[0] == board[3] == board[6] == 'X') or (board[0] == board[3] == board[6] == '0')\
+    or (board[0] == board[4] == board[8] == 'X') or (board[0] == board[4] == board[8] == '0')\
+    or (board[3] == board[4] == board[5] == 'X') or (board[3] == board[4] == board[5] == '0')\
+    or (board[1] == board[4] == board[7] == 'X') or (board[1] == board[4] == board[7] == '0')\
+    or (board[2] == board[5] == board[8] == 'X') or (board[2] == board[5] == board[8] == '0')\
+    or (board[6] == board[7] == board[8]== 'X') or (board[6] == board[7] == board[8]== '0')\
+    or (board[2] == board[4] == board[6]== 'X') or (board[2] == board[4] == board[6]== '0')):
         return True
     else:
         return False
@@ -70,72 +70,81 @@ def main():
 
     i = 0
     victory_status = False
+    continue_status = True
     chance = ''
-    initial_board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-    current_board = initial_board
+    initial_board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    #current_board = initial_board
 
     show_board(initial_board)
+    while continue_status == True:
+        current_board = initial_board
+        while victory_status == False:
+            # player 1 logic
+            chance = 'Player 1'
+            pos_playerOne = (int(input\
+            ("Player 1, please place your marker on the borad (1 - 9): "))) - 1;
 
-    while victory_status == False:
-        # player 1 logic
-        chance = 'Player 1'
-        pos_playerOne = (int(input\
-        ("Player 1, please place your marker on the borad (1 - 9): "))) - 1;
+            if (i < 1):
+                current_board[pos_playerOne] = marker[0]
+            else:
+                if (current_board[pos_playerOne] == 'X' \
+                or current_board[pos_playerOne] == '0'):
+                    int(input("%*% %*% %*%%*% %*% %*%\n\
+                    The slected postion is already filled.\
+                    \n%*% %*% %*%%*% %*% %*%\n\
+                    Please select correct position: "))
+                else:
+                    current_board[pos_playerOne] = marker[0]
+            i += 1
+            # Clear screen and print current board
+            clear_screen()
+            show_board(current_board)
+            victory_status = check_victory(current_board)
 
-        if (i < 1):
-            current_board[pos_playerOne] = marker[0]
-        else:
-            if (current_board[pos_playerOne] == 'X' \
-            or current_board[pos_playerOne] == '0'):
+            # check if the 9 board inputs are completed, total
+            # 9 columns are available for playes to select.
+            if (i >= 9):
+                print('\n\n!!! Game Over !!!\n\n')
+                break
+            if victory_status == True:
+                break
+            ###############################################################
+            ###############################################################
+            ###############################################################
+            # player 2 logic
+            chance = 'Player 2'
+            pos_playerTwo = (int(input\
+            ("Player 2, please place your marker on the borad (1 - 9): "))) - 1
+            
+            if (current_board[pos_playerTwo] == 'X' \
+            or current_board[pos_playerTwo] == '0'):
                 int(input("%*% %*% %*%%*% %*% %*%\n\
                 The slected postion is already filled.\
                 \n%*% %*% %*%%*% %*% %*%\n\
                 Please select correct position: "))
             else:
-                current_board[pos_playerOne] = marker[0]
-        i += 1
-        # Clear screen and print current board
-        clear_screen()
-        show_board(current_board)
-        victory_status = check_victory(current_board)
+                current_board[pos_playerTwo] = marker[1]
+            # Clear screen and print curent board
+            i += 1
+            clear_screen()
+            show_board(current_board)
+            victory_status = check_victory(current_board)
+            if victory_status == True:
+                break
 
-        # check if the 9 board inputs are completed, total
-        # 9 columns are available for playes to select.
-        if (i >= 9):
-            print('\n\n!!! Game Over !!!\n\n')
-            break
         if victory_status == True:
-            break
-        ###############################################################
-        ###############################################################
-        ###############################################################
-        # player 2 logic
-        chance = 'Player 2'
-        pos_playerTwo = (int(input\
-        ("Player 2, please place your marker on the borad (1 - 9): "))) - 1
-        
-        if (current_board[pos_playerTwo] == 'X' \
-        or current_board[pos_playerTwo] == '0'):
-            int(input("%*% %*% %*%%*% %*% %*%\n\
-            The slected postion is already filled.\
-            \n%*% %*% %*%%*% %*% %*%\n\
-            Please select correct position: "))
+            print("Congratulations {}!!! You have won!!! \n".format(chance))
+        elif i == 9:
+            print("Game tied.\n")
         else:
-            current_board[pos_playerTwo] = marker[1]
-        # Clear screen and print curent board
-        i += 1
-        clear_screen()
-        show_board(current_board)
-        victory_status = check_victory(current_board)
-        if victory_status == True:
-            break
+            print("Exception\n")
 
-    if victory_status == True:
-        print("Congratulations {}!!! You have won!!! ".format(chance))
-    elif i == 9:
-        print("Game tied.")
-    else:
-        print("Exception")
+        continue_status = input("Would you like to continue? (Y or N)")
+        if continue_status == 'Y' or continue_status == 'Yes':
+            continue_status = True
+        else:
+            continue_status = False
+
 
 if __name__ == '__main__':
     main()
