@@ -75,21 +75,23 @@ def main():
     initial_board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     #current_board = initial_board
 
-    show_board(initial_board)
+    
     while continue_status == True:
+        initial_board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         current_board = initial_board
+        show_board(initial_board)
         while victory_status == False:
             # player 1 logic
             chance = 'Player 1'
             pos_playerOne = (int(input\
-            ("Player 1, please place your marker on the borad (1 - 9): "))) - 1;
+            ("Player 1, please place your marker on the borad (1 - 9): "))) - 1
 
             if (i < 1):
                 current_board[pos_playerOne] = marker[0]
             else:
                 if (current_board[pos_playerOne] == 'X' \
                 or current_board[pos_playerOne] == '0'):
-                    int(input("%*% %*% %*%%*% %*% %*%\n\
+                    current_board[pos_playerOne] = int(input("%*% %*% %*%%*% %*% %*%\n\
                     The slected postion is already filled.\
                     \n%*% %*% %*%%*% %*% %*%\n\
                     Please select correct position: "))
@@ -118,7 +120,7 @@ def main():
             
             if (current_board[pos_playerTwo] == 'X' \
             or current_board[pos_playerTwo] == '0'):
-                int(input("%*% %*% %*%%*% %*% %*%\n\
+                current_board[pos_playerTwo] = int(input("%*% %*% %*%%*% %*% %*%\n\
                 The slected postion is already filled.\
                 \n%*% %*% %*%%*% %*% %*%\n\
                 Please select correct position: "))
@@ -133,15 +135,18 @@ def main():
                 break
 
         if victory_status == True:
-            print("Congratulations {}!!! You have won!!! \n".format(chance))
+            print("\nCongratulations {}!!! You have won!!! \n".format(chance))
         elif i == 9:
-            print("Game tied.\n")
+            print("\nGame tied.\n")
         else:
-            print("Exception\n")
+            print("\nException\n")
 
         continue_status = input("Would you like to continue? (Y or N)")
         if continue_status == 'Y' or continue_status == 'Yes':
             continue_status = True
+            victory_status = False
+            i = 0
+            current_board = initial_board
         else:
             continue_status = False
 
